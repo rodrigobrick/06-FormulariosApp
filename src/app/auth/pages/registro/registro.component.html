@@ -1,0 +1,122 @@
+<h2>Validaciones Reactivas</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+
+        <form autocomplete="off" [formGroup]="miForm" (ngSubmit)="submitForm()">
+
+            <!--Nombre-->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                       class="form-control"
+                       formControlName="nombre"
+                       placeholder="Nombre del usuario">
+
+                    <span class="form-text text-danger"
+                          *ngIf="campoValido('nombre')"> 
+                        Debe de ser en formato de nombre y apellido
+                    </span>
+                </div>
+            </div>
+
+            <!--Email-->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                       class="form-control"
+                       formControlName="email"
+                       placeholder="Email del usuario">
+
+                    <span class="form-text text-danger"
+                       *ngIf="campoValido('email')"> 
+                        {{ emailErrorMsg  }}
+                    </span>
+                </div>
+            </div>
+
+            <!--Username-->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input type ="text"
+                       class="form-control"
+                       formControlName="username"
+                       placeholder="Nombre codigo del usuario">
+
+                        <span class="form-text text-danger"
+                              *ngIf="campoValido('username')"> 
+                            El username no puede ser brick
+                        </span>
+                </div>
+            </div>
+
+            <!--Password-->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                       class="form-control"
+                       formControlName="password"
+                       placeholder="Password de la cuenta">
+
+                       <span class="form-text text-danger"
+                              *ngIf="campoValido('password')"> 
+                            La contraseña debe tener 6 caracteres como minimo
+                        </span>
+
+                </div>
+            </div>
+
+            <!--Password2-->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Confirmar</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                       class="form-control"
+                       formControlName="password2"
+                       placeholder="Confirmar contraseña">
+
+                       <span class="form-text text-danger"
+                              *ngIf="campoValido('password')"> 
+                            Las contraseñas no son iguales
+                        </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary float-end"
+                            [disabled]="miForm.pending"
+                            type="submit">
+                        Crear
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<h5>form valid : {{ miForm.valid}}</h5>
+
+<h5>form status : {{ miForm.status}}</h5>
+
+<h5>form errors : {{ miForm.errors | json}}</h5>
+
+<h5>email</h5>
+<pre>{{ miForm.controls?.['email']?.errors | json }}</pre>
+
+<h5>username</h5>
+<pre>{{ miForm.controls?.['username']?.errors | json }}</pre>
+
+<h5>password</h5>
+<pre>{{ miForm.controls?.['password']?.errors | json }}</pre>
+
+<h5>confirmar</h5>
+<pre>{{ miForm.controls?.['password2']?.errors | json }}</pre>
+

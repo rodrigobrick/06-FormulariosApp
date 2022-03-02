@@ -12,7 +12,7 @@
 </ul>
 
 <br>
-<h2>Reactive</h2>   
+<h2 class="mt-3">Reactive</h2>   
 <hr>
 
 <ul class="list-group">
@@ -24,3 +24,14 @@
     </li>
 
 </ul>
+
+<br>
+<h2 class="mt-3">Validaciones</h2>   
+<hr>
+
+<li *ngFor="let item of authMenu"
+        class="list-group-item" 
+        [routerLink]="[item.ruta]"
+        routerLinkActive="active">
+        {{item.texto}}
+</li>
